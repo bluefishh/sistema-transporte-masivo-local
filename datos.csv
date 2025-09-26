@@ -1,0 +1,12 @@
+origen,destino,tiempo,accesible,congestion
+A,B,4,True,Bajo
+A,C,2,True,Medio
+B,D,10,True,Alto
+B,E,3,True,Bajo
+C,E,2,False,Medio
+C,F,5,True,Alto
+E,D,4,False,Medio
+E,G,6,True,Bajo
+F,G,2,True,Bajo
+G,H,3,True,Medio
+D,H,5,True,Bajo
