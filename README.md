@@ -4,7 +4,8 @@ Este proyecto modela un sistema de transporte masivo local utilizando grafos, do
 
 ## Características
 
-- **Algoritmo A\***: Implementación del algoritmo A* con heurística dinámica basada en la distancia euclidiana (coordenadas 2D en x e y).
+- **Algoritmo A\***: Implementación del algoritmo A* con heurística dinámica basada en la distancia euclidiana (coordenadas 2D en x e y) deducidas con el teorema de Pitágoras, se hace através de la librería `matplotlib`.
+- **Visualización**: Utiliza `networkx` y `matplotlib` para representar gráficamente el sistema de transporte.
 - **Reglas**: Considera tiempos, accesibilidad y congestión en las conexiones.
 
 ## Requisitos
