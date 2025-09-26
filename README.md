@@ -13,3 +13,17 @@ Este proyecto modela un sistema de transporte masivo local utilizando grafos, do
 - [networkx](https://networkx.org/)
 - [matplotlib](https://matplotlib.org/)
 - Python 3.x
+
+# Instrucciones de Uso
+1. Clonar el repositorio.
+2. Instalar las dependencias:
+   ```bash
+   pip install networkx matplotlib
+   ```
+3. Ejecutar el script principal:
+   ```bash
+   python act2.py
+   ```
+4. Seguir las instrucciones en pantalla para ingresar los puntos de inicio y destino.
+5. Visualizar el grafo y el camino óptimo encontrado.
+6. Revisar el archivo `act2.py` para entender la implementación del algoritmo A* y cómo se modela el sistema de transporte.
