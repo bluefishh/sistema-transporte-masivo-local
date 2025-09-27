@@ -50,6 +50,44 @@ def costo_transicion(arista, accesibilidad_requerida):
     factor = {"bajo": 1.0, "medio": 1.3, "alto": 1.6}
     return arista["tiempo"] * factor.get(arista["congestion"], 1.0)
 
+# Función para mostrar detalles del tiempo de viaje
+def mostrar_detalles_ruta(grafo, ruta):
+    print("\n=== DETALLES DEL TIEMPO DE VIAJE ===")
+    tiempo_total = 0
+    
+    for i in range(len(ruta) - 1):
+        origen = ruta[i]
+        destino = ruta[i + 1]
+        
+        # Buscar la arista correspondiente
+        arista_encontrada = None
+        for arista in grafo.get(origen, []):
+            if arista["destino"] == destino:
+                arista_encontrada = arista
+                break
+        
+        if arista_encontrada:
+            tiempo_base = arista_encontrada["tiempo"]
+            congestion = arista_encontrada["congestion"]
+            accesible = arista_encontrada["accesible"]
+            
+            # Calcular factor de congestión
+            factor_congestion = {"bajo": 1.0, "medio": 1.3, "alto": 1.6}
+            factor = factor_congestion.get(congestion.lower(), 1.0)
+            tiempo_real = tiempo_base * factor
+            
+            print(f"{origen} → {destino}:")
+            print(f"  • Tiempo base: {tiempo_base} min")
+            print(f"  • Congestión: {congestion.capitalize()} (factor x{factor})")
+            print(f"  • Accesible: {'Sí' if accesible else 'No'}")
+            print(f"  • Tiempo real: {tiempo_real:.2f} min")
+            print()
+            
+            tiempo_total += tiempo_real
+    
+    print(f"TIEMPO TOTAL DEL RECORRIDO: {tiempo_total:.2f} minutos")
+    print("=" * 45)
+
 # Heurística
 def heuristica(nodo, destino):
     x1, y1 = coordenadas[nodo]
@@ -137,10 +175,15 @@ if __name__ == "__main__":
         print("\nMejor ruta encontrada:")
         print(" -> ".join(mejor[0]))
         print("Costo total:", round(mejor[1], 2), "minutos")
+        
+        # Mostrar detalles del tiempo para la mejor ruta
+        mostrar_detalles_ruta(grafo, mejor[0])
 
         if len(rutas) > 1:
             print("\nOtras rutas posibles diferentes a la dada:")
-            for r, c in rutas[1:]:
-                print(" -> ".join(r), "| costo:", round(c, 2))
+            for i, (r, c) in enumerate(rutas[1:], 1):
+                print(f"\nRuta alternativa {i}:")
+                print(" -> ".join(r), "| costo:", round(c, 2), "minutos")
+                mostrar_detalles_ruta(grafo, r)
 
         dibujar_grafo(grafo, mejor[0])
