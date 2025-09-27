@@ -50,7 +50,7 @@ def costo_transicion(arista, accesibilidad_requerida):
     factor = {"bajo": 1.0, "medio": 1.3, "alto": 1.6}
     return arista["tiempo"] * factor.get(arista["congestion"], 1.0)
 
-# Función para mostrar detalles del tiempo de viaje
+# Mostrar detalles del tiempo de viaje
 def mostrar_detalles_ruta(grafo, ruta):
     print("\n=== DETALLES DEL TIEMPO DE VIAJE ===")
     tiempo_total = 0
@@ -59,7 +59,6 @@ def mostrar_detalles_ruta(grafo, ruta):
         origen = ruta[i]
         destino = ruta[i + 1]
         
-        # Buscar la arista correspondiente
         arista_encontrada = None
         for arista in grafo.get(origen, []):
             if arista["destino"] == destino:
@@ -71,7 +70,6 @@ def mostrar_detalles_ruta(grafo, ruta):
             congestion = arista_encontrada["congestion"]
             accesible = arista_encontrada["accesible"]
             
-            # Calcular factor de congestión
             factor_congestion = {"bajo": 1.0, "medio": 1.3, "alto": 1.6}
             factor = factor_congestion.get(congestion.lower(), 1.0)
             tiempo_real = tiempo_base * factor
@@ -82,7 +80,6 @@ def mostrar_detalles_ruta(grafo, ruta):
             print(f"  • Accesible: {'Sí' if accesible else 'No'}")
             print(f"  • Tiempo real: {tiempo_real:.2f} min")
             print()
-            
             tiempo_total += tiempo_real
     
     print(f"TIEMPO TOTAL DEL RECORRIDO: {tiempo_total:.2f} minutos")
